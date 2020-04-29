@@ -6,8 +6,9 @@ Germinal centers (GCs) are specialized compartments within the secondary lymphoi
 &nbsp;
 
 
-The model is based on 10 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2]. In the simulation, 5 types of reactants are considered:
+The model is based on a system of 11 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2], so the reaction rate can be different for each agent, depending on their individual properties.
 
+      5 types of reactants are considered:
       - Centroblast (Dark Zone) = CB
       - Centrocytes (Light Zone) = CC
       - Selected Centrocytes (Light Zone) = CCsel
@@ -18,7 +19,7 @@ The model is based on 10 stochastic interactions, implemented with a modified Gi
       - Plasma cells (Outside GC) = PC
       - Dead cells = 0 
       
-      10 reactions are considered:
+      11 reactions are considered:
       - Cell entering the GC:        0 -> CB
       - Centrocyte apoptosis:        CC -> 0
       - Centroblast migration:       CB -> CC
@@ -28,7 +29,8 @@ The model is based on 10 stochastic interactions, implemented with a modified Gi
       - Centrocyte Tfh binding:      CC + TC = [CCTC]
       - Tfh switch:                  [CC1TC] + CC2 -> CC1 + [CC2TC]
       - Centroblast division:        CB -> 2CB
-      - FDCantigen uptake:           CC -> CC
+      - Centroblast apoptosis:       CB -> 0
+      - Centrocyte antigen uptake:   CC -> CC
         
         
 ### Running the code
