@@ -34,7 +34,7 @@ The model is based on a system of 11 stochastic interactions, implemented with a
         
         
 ### Running the code
-To process Raman images, run `src/_Main - Raman_analysis.py`. Running the program requires python3, and in addition to standard libraries such as numpy or matplotlib, the program also requires `hdf5storage` (available at https://pypi.org/project/hdf5storage/) to read `.mat` files, and `brokenaxis` (https://github.com/bendichter/brokenaxes) to plot the spectra. Two raw images are provided in `src/Raw_Measurements.py` to show how the code works, but more Raman images are publicly available at https://data.mendeley.com/datasets/dshgffwykw/1
+To launch the simulation, run `main.py`. Running the program requires python3, along with its standard libraries such as numpy or matplotlib. The program plot the simulation results from the model, along with the experimental data from litterature, available in the folder `Exp_data/`.
 
 
 ## References
