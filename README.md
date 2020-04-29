@@ -27,5 +27,8 @@ To process Raman images, run `src/_Main - Raman_analysis.py`. Running the progra
 
 ## References
 
-[ref] A. Pélissier, Y. Akrout, K. Jahn, J. Kuipers, U. Klein, N. Beerenwinke, M. Rodríguez Martínez. Computational model reveals a stochastic mechanism behind germinal center clonal bursts. *Cells*. 2020
+[1] A. Pélissier, Y. Akrout, K. Jahn, J. Kuipers, U. Klein, N. Beerenwinke, M. Rodríguez Martínez. Computational model reveals a stochastic mechanism behind germinal center clonal bursts. *Cells*. 2020.
+
+[2] MJ. Thomas, U. Klein, J. Lygeros, M. Rodríguez Martínez.  A probabilistic model of the germinal center reaction. *Frontiers in immunology*. 2019.
+
 
