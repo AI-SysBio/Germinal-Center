@@ -6,7 +6,7 @@ Germinal centers (GCs) are specialized compartments within the secondary lymphoi
 &nbsp;
 
 
-The model is based on a system of 11 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2], (the reaction rate can be adjusted for each individual reactant).
+The model is based on a system of 11 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2].
 
       5 types of reactants are considered:
       - Centroblast (Dark Zone) = CB
