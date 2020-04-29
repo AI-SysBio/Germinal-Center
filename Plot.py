@@ -1,15 +1,10 @@
 
-import os
 import numpy as np
 import pandas as pd
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
-from numpy.random import random_sample as random
-import scipy.interpolate as ip
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
-from scipy.stats import spearmanr
 
 from numpy import genfromtxt
 from libAffinity import affinity

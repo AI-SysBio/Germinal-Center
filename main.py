@@ -4,7 +4,6 @@ import random as rd
 import matplotlib.pyplot as plt
 
 from libGillespie import launch_Gillespie, initialize_GC, get_percentil
-from libAffinity import get_affinity
 from Plot import plot_results, plot_clonal_competition
 
 import warnings
@@ -14,15 +13,16 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 """ --------------------------------------------------------------------------------------------
  Implementation of the Germinal center simulation with a modified Gillepsie algorithm. 
- Adapted to account for individual properties of each reactants
- The simulation account for affinity dependant reaction rates
+ Adapted to account for individual properties of each reactants.
  
- [ref] ..........................................................
+ [ref] A. Pélissier, Y. Akrout, K. Jahn, J. Kuipers, U. Klein, N. Beerenwinke, M. Rodríguez Martínez. 
+ Computational model reveals a stochastic mechanism behind germinal center clonal bursts. Cells. 2020
        
 
-  In the simulation, 4 types of reactants are considered:
+  In the simulation, 5 types of reactants are considered:
       - Centroblast (Dark Zone) = CB
       - Centrocytes (Light Zone) = CC
+      - Selected Centrocytes (Light Zone) = CCsel
       - Binnded Centrocytes (Light Zone) = [CCTC]
       - Free T follicular helper (Light Zone) = Tfh
       
@@ -31,16 +31,17 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
       - Plasma cells (Outside GC) = PC
       - Dead cells (in heaven) = 0
       
-   9 reactions are considered:
+   10 reactions are considered:
+      - Cell entering the GC:        0 -> CB
       - Centrocyte apoptosis:        CC -> 0
       - Centroblast migration:       CB -> CC
       - Centrocite unbinding:        [CCTC] -> CC + TC
       - Centrocyte recirculation:    CC -> CB
-      - Centrocyte MC exit:          CC -> MC
-      - Centrocyte PC exit:          CC -> PC (+ CB)
+      - Centrocyte exit:             CC -> MC or PC
       - Centrocyte Tfh binding:      CC + TC = [CCTC]
       - Tfh switch:                  [CC1TC] + CC2 -> CC1 + [CC2TC]
       - Centroblast division:        CB -> 2CB
+      - FDCantigen uptake:           CC -> CC
       
    The affinity between BCR and antigens is related to the similarities
    between their respective DNA sequences. More precisely, the affinity is
@@ -52,11 +53,11 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 
 
-def main_simulation(N_simulations = 15):
+def main_simulation(N_simulations = 10):
     
     
     print("\n=================================================================================") 
-    print("=================== GC Simulation in 3D - Gillepsie algorithm ===================") 
+    print("====================== GC Simulation - Gillepsie algorithm ======================") 
     print("=================================================================================\n\n")                 
     
     rd.seed(100)

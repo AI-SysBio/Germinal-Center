@@ -6,28 +6,26 @@
   In the simulation, 5 types of reactants are considered:
       - Centroblast (Dark Zone) = CB
       - Centrocytes (Light Zone) = CC
-      - Bounded Centrocytes (Light Zone) = CCTC
+      - Selected Centrocytes (Light Zone) = CCsel
+      - Binnded Centrocytes (Light Zone) = [CCTC]
       - Free T follicular helper (Light Zone) = Tfh
-      - Selected Centrocytes (CCsel)
       
         (Plus 3 additional cell types, leaving the GC)
       - Memory cells (Outside GC) = MC
       - Plasma cells (Outside GC) = PC
       - Dead cells (in heaven) = 0
       
-   9 reactions are considered:
+   10 reactions are considered:
+      - Cell entering the GC:        0 -> CB
       - Centrocyte apoptosis:        CC -> 0
       - Centroblast migration:       CB -> CC
       - Centrocite unbinding:        [CCTC] -> CC + TC
       - Centrocyte recirculation:    CC -> CB
-      - Centrocyte MC exit:          CC -> MC
-      - Centrocyte PC exit:          CC -> PC (+ CB)
+      - Centrocyte exit:             CC -> MC or PC
       - Centrocyte Tfh binding:      CC + TC = [CCTC]
       - Tfh switch:                  [CC1TC] + CC2 -> CC1 + [CC2TC]
       - Centroblast division:        CB -> 2CB
-      
-      - FDCantigen uptake:         CC -> CCr
-      - refractoratory state exit: CCr -> CC (is it that important ?, yes it make harder to get antigen)
+      - FDCantigen uptake:           CC -> CC
 """
 
 
@@ -42,16 +40,8 @@ from scipy.stats import spearmanr
 
 from libAffinity import Cell, affinity, av_affinity, get_BCR, generate_BCR, clonal_heterogeneity
 
-"""
-    Implementation details:
 
-    The indexes of CB are stored as a sorted map to make the draw of Bcell division
-    faster to implement
-
-"""
         
-    
-    
         
 def launch_Gillespie(GCdata_init, Tend, rates, param_intra, timepoints, Tfh_percentil):
       
@@ -59,13 +49,16 @@ def launch_Gillespie(GCdata_init, Tend, rates, param_intra, timepoints, Tfh_perc
     Run the Gillespie simulation once, return the populations of each reactant at different timestep
     
     Input:
-        N_GC_init   = 1D array,     number of initial cell for each reactants
-        Tend        = float,        time length of the simulation
-        rates       = 1D array,     rates of each reaction
-        timepoints  = int,          number of timepoints to save
+        GCdata_init   = list,         List of reactants of each population
+        Tend          = float,        time length of the simulation
+        rates         = 1D array,     rates of each reaction
+        timepoints    = int,          number of timepoints to save
+        Tfh_percentil = 1D array,     precomputed percentiles of Tfh help.
         
     Output:
         population  = 3D array,     population of each reactant at each time step
+        properties  = 3D array,     affinity, number of clone and NDS at each time step
+        BCR = 4D list, containing the BCR cel list of each ancestors at each time step BCR[t][a][cell][seq]
     """
 
  
@@ -214,7 +207,10 @@ def compute_propensity(GCdata, rates, t, stop_seeding):
       - Centrocyte Tfh binding:         CC + TC -> [CCTC]
       - Centrocyte unbinding:           CCTC -> CC + TC
       - Tfh switch:                     [CC1TC] + CC2 -> CC1 + [CC2TC]
-      - Centrocyte fate:                CC -> 0 or CB or MC or PC
+      - Centrocyte apoptosis            CC -> 0
+      - Centrocyte recirculation:       CC -> CB
+      - Centrocyte exit:                CC -> MC or PC
+      - naive B cell activation:        0 -> CB
     """
     
     r_activation, r_division, r_migration, r_FDCencounter, r_TCencounter, r_unbinding, r_apoptosis, r_recirculate, r_exit, rhoTC = rates
@@ -258,9 +254,6 @@ def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff
         - When pop() is called from the end, the operation is O(1), while calling pop() from anywhere else is O(n)
           due to memory realocation. One trick to gain speed is to exchange values of the element you want to delete 
           with the last element, and then use pop().
-          
-    Reactions 5 is 30 times longer than the others (1 mu_s vs 100 mu_s)
-    due to the SHM computation
     """
     
     GC_CB,GC_CC,GC_CCsel,GC_CCTC,GC_TC,GC_MC,GC_PC,GC_DCC,GC_DCB,Seeder_list = GCdata

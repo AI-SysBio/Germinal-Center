@@ -11,12 +11,6 @@ from collections import Counter
 """
   This library provides all the related functions to affinity and
   antigen/antibodies interactions
-    
-  An initial target antibody is set to [0...0], and the binding probability 
-  is computed according to the current antibody.
-  
-  The affinity of a Cell exiting the Germinal center determines if 
-  it becomes a PC or MC.
 """
 
 
@@ -27,13 +21,13 @@ class Cell():
     Attributes
     ---------- 
     cMyc : double
-        Current concentration of cMyc inthe cell
+        Current concentration of cMyc in the cell (division counter)
         
     affinity : double
         Affinity with the target antibody
         
-    antigen : int
-        Number of acquired antigens
+    pMHC : float
+        Concentration of the pMHC complex
         
     ancestor : int
         index of the seeder cell it originates from
@@ -41,8 +35,11 @@ class Cell():
     DNAseq : string
         IgV DNA string of the cell, used for affinity computation
         
-    divcount: int
-        Tool to track the number of division performed in the DZ
+    TChelp: float
+        Cumulated Tfh signal
+        
+    tstart: float
+        Time at which the cell entered in its last state
     """
        
     def __init__(self, cMyc = 0, DNAseq = [], ancestor = 0, pMHC = 0, TChelp = 0, tstart = 0):
