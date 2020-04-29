@@ -1,4 +1,4 @@
-# A Probabilistic agent based model of the Germinal Center reaction
+# A Probabilistic model of the Germinal Center reaction
 
 <img align="right" src="https://raw.githubusercontent.com/Aurelien-Pelissier/GerminalCenter/master/GC.png" width=400>
 Germinal centers (GCs) are specialized compartments within the secondary lymphoid organs where B cells proliferate, differentiate, and mutate their antibody genes in response to the presence of foreign antigens. Through the GC lifespan, interclonal competition between B cells leads to increased affinity of the B cell receptors for antigens accompanied by a loss of clonal diversity. This repository contains the python implementation of a quantitative stochastic model of the GC reaction, that explicitly models B cell receptors as sequences of nucleotides undergoing random somatic mutations [1].
@@ -6,21 +6,19 @@ Germinal centers (GCs) are specialized compartments within the secondary lymphoi
 &nbsp;
 
 
-The model is based on 10 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2].
-       
-  In the simulation, 5 types of reactants are considered:
+The model is based on 10 stochastic interactions, implemented with a modified Gillepsie algorithm that can account for the individual properties of each agents [2]. In the simulation, 5 types of reactants are considered:
+
       - Centroblast (Dark Zone) = CB
       - Centrocytes (Light Zone) = CC
       - Selected Centrocytes (Light Zone) = CCsel
       - Binnded Centrocytes (Light Zone) = [CCTC]
       - Free T follicular helper (Light Zone) = Tfh
-      
         (Plus 3 additional cell types, leaving the GC)
       - Memory cells (Outside GC) = MC
       - Plasma cells (Outside GC) = PC
-      - Dead cells (in heaven) = 0
+      - Dead cells = 0 
       
-   10 reactions are considered:
+      10 reactions are considered:
       - Cell entering the GC:        0 -> CB
       - Centrocyte apoptosis:        CC -> 0
       - Centroblast migration:       CB -> CC
