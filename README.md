@@ -27,4 +27,5 @@ To process Raman images, run `src/_Main - Raman_analysis.py`. Running the progra
 
 ## References
 
-[ref] A. Pelissier, K. Hashimoto, K. Mochizuki, Y. Kumamoto, J. N. Taylor, A. Nakamura, Y. Harada, K. Fujita, T. Komatsuzaki. (2019). Intelligent Measurement Analysis on Single Cell Raman Images for the Diagnosis of Follicular Thyroid Carcinoma [https://arxiv.org/abs/1904.05675]
+[ref] A. Pélissier, Y. Akrout, K. Jahn, J. Kuipers, U. Klein, N. Beerenwinke, M. Rodríguez Martínez. Computational model reveals a stochastic mechanism behind germinal center clonal bursts. *Cells*. 2020
+
