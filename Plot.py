@@ -55,7 +55,7 @@ def plot_clones(n_clones, NDS, Tend):
     plt.ylabel('Number of clones in GC LZ')
     plt.xlim([0,42])
     plt.legend()
-    plt.savefig("Plot/GC/ClonalDiversity.png")
+    plt.savefig("Results/ClonalDiversity.png")
     plt.show()
     
     
@@ -109,7 +109,7 @@ def plot_clones(n_clones, NDS, Tend):
     plt.xlabel("Days after immunization")
     plt.legend()
     plt.ylim(0,1.1)
-    plt.savefig("Plot/GC/DominanceScore.png")
+    plt.savefig("Results/DominanceScore.png")
     plt.show()      
     
     
@@ -163,7 +163,7 @@ def plot_affinity(affinity, Tend):
     plt.ylabel('Average affinity of B cell in GC')
     plt.ylim((0.35,0.73))
     plt.xlim([0,42])
-    plt.savefig("Plot/GC/AffinityMaturation.png")
+    plt.savefig("Results/AffinityMaturation.png")
     plt.show()
     
     
@@ -202,7 +202,7 @@ def plot_GCpopulation(population, Tend):
     plt.errorbar(days, GC_volume/BC_volume, yerr=[(GC_volume-GC_volume_min)/BC_volume , (GC_volume_max-GC_volume)/BC_volume], fmt='o', color = "black", ecolor='black',capsize=5, label = "[Wittenbrink & al., 2011]")
     plt.xlim([0,42])
     plt.legend()
-    plt.savefig("Plot/GC/GCkin.png")
+    plt.savefig("Results/GCkin.png")
     plt.show()
     
     y_true = GC_volume/BC_volume
@@ -249,7 +249,7 @@ def plot_GCpopulation(population, Tend):
     plt.legend()
     plt.yscale("log")
     plt.ylim([0.05,20]) 
-    plt.savefig("Plot/GC/DZLZratio.png")
+    plt.savefig("Results/DZLZratio.png")
     plt.show()  
     
     
@@ -307,7 +307,7 @@ def plot_GCpopulation(population, Tend):
     plt.legend()
     plt.ylim(ymax=40)
     plt.yticks([])
-    plt.savefig("Plot/GC/MC.png")
+    plt.savefig("Results/MC.png")
     plt.show()      
     
     
@@ -368,7 +368,7 @@ def plot_GCpopulation(population, Tend):
     plt.ylim(ymax=20)
     plt.yticks([])
     plt.legend()
-    plt.savefig("Plot/GC/PC.png")
+    plt.savefig("Results/PC.png")
     plt.show()   
     
     
@@ -413,7 +413,7 @@ def plot_GCpopulation(population, Tend):
     plt.xlim([0,42])
     plt.ylim([0,20])
     plt.legend()
-    plt.savefig("Plot/GC/CellDeath.png")
+    plt.savefig("Results/CellDeath.png")
     plt.show()
     
     

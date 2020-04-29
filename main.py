@@ -157,7 +157,7 @@ def main_simulation(N_simulations = 15):
         plot_clonal_competition(BCRs, N_seeder, Tend)
         
     final_results = {"population": population, "properties": properties}
-    np.savez('Results/Simulation_resultsPop', **final_results)
+    np.savez('Results/Simulation_results', **final_results)
     
     plot_results(population, properties, Tend)
 
