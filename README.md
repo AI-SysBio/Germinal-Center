@@ -12,7 +12,7 @@ The model is based on a system of 11 stochastic interactions, implemented with a
       - Centroblast (Dark Zone) = CB
       - Centrocytes (Light Zone) = CC
       - Selected Centrocytes (Light Zone) = CCsel
-      - Binnded Centrocytes (Light Zone) = [CCTC]
+      - Bound Centrocytes (Light Zone) = [CCTC]
       - Free T follicular helper (Light Zone) = Tfh
         (Plus 3 additional cell types, leaving the GC)
       - Memory cells (Outside GC) = MBC
