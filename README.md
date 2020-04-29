@@ -1,6 +1,6 @@
 # A Probabilistic agent based model of the Germinal Center reaction
 
-<img align="right" src="https://raw.githubusercontent.com/Aurelien-Pelissier/Raman-Imaging-Processing/master/img/Hyperspectral-Image.png" width=400>
+<img align="right" src="https://raw.githubusercontent.com/Aurelien-Pelissier/GerminalCenter/master/GC.png" width=400>
 Raman microscopy is a very promising technique to increase reliability in clinical diagnosis as it provides information on molecular vibrations and crystal structures, while being non-destructive and requiring minimal sample preparation. It allows high spatial resolution and can provide detailed images of individual cells, for which the extraction of chemical and spatial information of their sub-cellular components have the potential to give a more complete understanding of the underlying biological processes as well as better accuracies in clinical diagnosis. 
 
 
