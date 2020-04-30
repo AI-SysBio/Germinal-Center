@@ -72,6 +72,7 @@ def launch_Gillespie(GCdata_init, Tend, rates, param_intra, timepoints, Tfh_perc
     rhoTC = rates[-1]
     BCR = []
     n_Thelp = []
+    aff_GC = 0.4
     
     stop_seeding = False
     
@@ -118,7 +119,7 @@ def launch_Gillespie(GCdata_init, Tend, rates, param_intra, timepoints, Tfh_perc
                 
             
                 #4 ----- Perform the reaction
-                perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, affinity_)
+                perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff_GC)
                 #print(NCB0)
     
     
@@ -131,8 +132,8 @@ def launch_Gillespie(GCdata_init, Tend, rates, param_intra, timepoints, Tfh_perc
             BCR.append(get_BCR(GCdata,n_seeder))
             population[ti,:] = np.array([len(GC_CB),len(GC_CC),len(GC_CCsel),len(GC_CCTC),len(GC_TC),len(GC_MC),len(GC_PC),len(GC_DCC),len(GC_DCB)])
             
-            
-            affinity_[ti] = av_affinity(GCdata, which = [1])
+            aff_GC = av_affinity(GCdata, which = [1])
+            affinity_[ti] = aff_GC
 
             ti += 1
             
@@ -241,7 +242,7 @@ def compute_propensity(GCdata, rates, t, stop_seeding):
     
 
         
-def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, affinity_GC):
+def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff_GC):
     r_activation, r_division, r_migration, r_FDCencounter, r_TCencounter, r_unbinding, r_apoptosis, r_recirculate, r_exit, rhoTC = rates
     Lseq,g_site,pshm,antigenthreshold, s, delta = param_intra 
     
@@ -345,7 +346,7 @@ def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff
             GC_CC[indexC2] = CellB1
             
             GC_CCTC[indexC1].tstart = np.copy(t)
-            GC_CC[indexC2].TChelp += (t - GC_CC[indexC2].tstart)*signal_strenght(GC_CC[indexC2].affinity,t)
+            GC_CC[indexC2].TChelp += (t - GC_CC[indexC2].tstart)*signal_strenght(GC_CC[indexC2].affinity,aff_GC,t)
             
             
     elif mu == 5: #Centrocyte unbinding:      #CCTC -> CCsel + TC
@@ -354,7 +355,7 @@ def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff
         GC_CCsel.append(CellB) 
         GC_TC.append(Cell()) 
         
-        GC_CCsel[-1].TChelp += (t - GC_CCsel[-1].tstart)*signal_strenght(GC_CCsel[-1].affinity,t)
+        GC_CCsel[-1].TChelp += (t - GC_CCsel[-1].tstart)*signal_strenght(GC_CCsel[-1].affinity,aff_GC,t)
         
         
     elif mu == 6: #Centrocyte apoptosis
@@ -397,9 +398,9 @@ def perform_reaction(mu,GCdata,rates,param_intra, t, n_Thelp, Tfh_percentil, aff
 
 
 
-def signal_strenght(affinity,t):
+def signal_strenght(affinity,aff_GC,t):
     #need to adjust the n
-    n = 0
+    n = np.log(0.4)/np.log(aff_GC)
     signal = np.exp(np.power(affinity,n)) - 1
     return signal
     
