@@ -34,7 +34,7 @@ The model is based on a system of 11 stochastic interactions, implemented with a
         
         
 ### Running the code
-To launch the simulation, run `main.py`. Running the program requires python3 with its standard libraries such as numpy or matplotlib. The program plot the simulation results from the model, along with the experimental data from litterature, available in the folder `Exp_data/`.
+To launch the simulation, run `main.py`. Running the program requires python3 with its standard libraries such as numpy or matplotlib. The program plot the simulation results from the model, along with the experimental data from litterature, available in the folder `Exp_data/`. One Gillespie run should take less than 1min.
 
 
 ## References
