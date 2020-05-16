@@ -23,7 +23,7 @@ The model is based on a system of 11 stochastic interactions, implemented with a
       - Cell entering the GC:        0 -> CB
       - Centrocyte apoptosis:        CC -> 0
       - Centroblast migration:       CB -> CC
-      - Centrocite unbinding:        [CCTC] -> CC + TC
+      - Centrocyte unbinding:        [CCTC] -> CC + TC
       - Centrocyte recirculation:    CC -> CB
       - Centrocyte exit:             CC -> MBC or PC
       - Centrocyte Tfh binding:      CC + TC = [CCTC]
